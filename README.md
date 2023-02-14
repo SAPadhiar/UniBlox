@@ -9,7 +9,7 @@ This repository is made with the purpose of testing insure.com website's functio
 **Test URL:** http://d3j8nuwp74eyml.cloudfront.net/5U5PU/S2xbn  
 **Test Framework:** Playwright + PyTest (Python)\
 **Test Coverage:** 20%\
-**Browser:** Chromium
+**Browser:** Chromium\
 **Functional scenario:** Perform validation of GUI by performing end-to-end flow for adding user's insurance
 
 # Installing Playwright:
@@ -30,7 +30,7 @@ $ pytest test_name.py
 
 For successfully running _test_functional.py_ , follow below steps after installing playwright & required modules:
 ```
-git clone https://github.com/SAPadhiar/UniBlox.git
-cd UniBlox
-pytest -vs tests/test_functional.py
+$ git clone https://github.com/SAPadhiar/UniBlox.git
+$ cd UniBlox
+$ pytest -vs tests/test_functional.py
 ```
