@@ -11,4 +11,5 @@ class User:
     last_name = "Automation"
     email = "test.automation.user1234@gmail.com"
     birth_date = "23-12-2020"
-    phone = 123456789012
+    phone = "9287459832123"
+    address = "India Street"

@@ -11,7 +11,8 @@ class PageData:
     """
     welcome_str = "It’s easy to apply, tell us about yourself and see if you’re instantly approved for coverage! It’ll only take about 5-10 mins to complete your application."
     help_panel = "Email us\nyoursupport@insure.com\nIf you have questions specific to your coverages, please reach out to your HR Representative."
-
+    concent = "I have read and agree to sign the Consent to do business electronically"
+    hippa = "I have read and agree to sign the HIPAA notice which authorizes any physician, hospital, pharmacy, pharmacy benefit manager, health insurance plan or any other entity that possesses any diagnosis, treatment, prescription or other medical information about me to furnish such health information to Symetra Life Insurance Company for the purpose of evaluating my eligibility for insurance. This medical or health information may include information on the diagnosis and treatment of mental illness, alcohol, and drug use. This also includes information on the diagnosis, treatment, and testing results related to HIV, AIDS, and sexually transmitted diseases, unless otherwise restricted by state law. Health information obtained will not be re-disclosed without my authorization unless permitted by law, in which case it may not be protected under federal privacy rules. This authorization shall be valid for two years from this date and may be revoked by sending written notice to Symetra Life Insurance Company. I further understand that if I refuse to sign this authorization to release your complete medical record, Symetra Life Insurance Company may not be able to process my application."
 
     def __init__(self):
         self.header_logo = TestBase.get_page().locator(Locators.header_logo)
@@ -48,3 +49,18 @@ class PageData:
         self.female_label = TestBase.get_page().locator(Locators.female_label)
         self.phone_label = TestBase.get_page().locator(Locators.phone_label)
         self.phone_input = TestBase.get_page().locator(Locators.phone_input)
+        self.address_label = TestBase.get_page().locator(Locators.address_label)
+        self.location_input = TestBase.get_page().locator(Locators.location_input)
+        self.find_address_link = TestBase.get_page().locator(Locators.find_address_link)
+        self.concent_message = TestBase.get_page().locator(Locators.concent_message)
+        self.concent_checkbox = TestBase.get_page().locator(Locators.concent_checkbox)
+        self.hipaa_message = TestBase.get_page().locator(Locators.hipaa_message)
+        self.hipaa_notice_checkbox = TestBase.get_page().locator(Locators.hipaa_notice_checkbox)
+        self.apt_unit_input = TestBase.get_page().locator(Locators.apt_unit_input)
+        self.apt_unit_label = TestBase.get_page().locator(Locators.apt_unit_label)
+        self.select_city = TestBase.get_page().locator(Locators.select_city)
+        self.height_weight_label = TestBase.get_page().locator(Locators.height_weight_label)
+        self.height_label = TestBase.get_page().locator(Locators.height_label)
+        self.weight_label = TestBase.get_page().locator(Locators.weight_label)
+        self.height_dropdown = TestBase.get_page().locator(Locators.height_dropdown)
+        self.weight_input = TestBase.get_page().locator(Locators.weight_input)

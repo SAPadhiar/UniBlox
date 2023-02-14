@@ -1,8 +1,7 @@
 """
 Script for functional testing
 """
-import pytest
-from playwright.sync_api import sync_playwright, expect
+from playwright.sync_api import expect
 from support.test_base import TestBase
 from support.test_data import User
 from support.helper import Helpers
@@ -28,7 +27,6 @@ class TestFunctional:
         """
         Invoked after every test function in the module
         """
-        TestBase.get_page().screenshot()
         TestBase.get_browser().close()
 
     def test_add_insurance(self):
@@ -36,7 +34,7 @@ class TestFunctional:
         Verification for successful addition of Insurance
         """
         page = PageData()
-        # Verification for the Welcome Page
+        print("\nVerification for the Welcome Page")
         Helpers.verify_label(page.header_need_help_link, "Need help?")
         Helpers.verify_button(page.get_started_button, "Get Started")
         Helpers.verify_label(page.welcome_text, "👋Welcome")
@@ -47,7 +45,7 @@ class TestFunctional:
         assert page.need_help_panel.all_inner_texts()[0] == page.help_panel, "Help Panel text mismatch"
         page.get_started_button.click()
 
-        # Verification for Applicant Page
+        print("Verification for Applicant Page")
         Helpers.verify_label(page.applicant_type, "Applicant type")
         Helpers.verify_label(page.employee_label, "Employee")
         Helpers.verify_label(page.spouse_label, "Spouse")
@@ -55,7 +53,7 @@ class TestFunctional:
         Helpers.verify_button(page.next_button, "Next")
         page.spouse_label.click()
 
-        # Verification for Spouse Name Page
+        print("Verification for Spouse Name Page")
         Helpers.verify_label(page.your_name_label, "Your name")
         Helpers.verify_label(page.first_label, "First")
         Helpers.verify_label(page.last_label, "Last")
@@ -65,7 +63,7 @@ class TestFunctional:
         page.last_name_input.fill(User.last_name)
         page.next_button.click()
 
-        # Verification for Spouse Email Page
+        print("Verification for Spouse Email Page")
         Helpers.verify_label(page.email_label, "Email")
         Helpers.verify_textbox(page.email_textbox, None, self.alnum+"@-.")
         page.email_textbox.fill(self.alnum)
@@ -74,7 +72,7 @@ class TestFunctional:
         page.email_textbox.fill(User.email)
         page.next_button.click()
 
-        # Verification for Employee Name Page
+        print("Verification for Employee Name Page")
         Helpers.verify_label(page.employee_name_label, "Employee Name")
         Helpers.verify_label(page.first_label, "First")
         Helpers.verify_label(page.last_label, "Last")
@@ -84,7 +82,7 @@ class TestFunctional:
         page.last_name_input.fill("Employee" + User.last_name)
         page.next_button.click()
 
-        # Verification for Coverage Page
+        print("Verification for Coverage Page")
         Helpers.verify_label(page.coverage_label, "Select a coverage amount")
         Helpers.verify_label(page.coverage_amount_label, "$0")
         expect(page.coverage_slider).to_be_visible()
@@ -92,7 +90,7 @@ class TestFunctional:
         Helpers.verify_label(page.coverage_amount_label, "$130,000")
         page.next_button.click()
 
-        # Verification for Date of Birth Page
+        print("Verification for Date of Birth Page")
         Helpers.verify_label(page.date_of_birth_label, "Date of Birth")
         Helpers.verify_textbox(page.date_of_birth_textbox)
         page.date_of_birth_textbox.fill(self.alnum)     # Should not allow alphabetical chars
@@ -101,17 +99,42 @@ class TestFunctional:
         Helpers.verify_label(page.date_format_label, "mm-dd-yyyy")
         page.next_button.click()
 
-        # Verification for Gender Page
+        print("Verification for Gender Page")
         Helpers.verify_label(page.gender_label, "Gender")
         Helpers.verify_label(page.male_label, "Male")
         Helpers.verify_label(page.female_label, "Female")
-        page.female_label.click()
+        page.male_label.click()
 
-        # Verification for Phone Page
+        print("Verification for Phone Page")
         Helpers.verify_label(page.phone_label, "Phone Number")
         Helpers.verify_textbox(page.phone_input)
         page.phone_input.fill(self.alnum)     # Should not allow alphabetical chars
-        assert page.phone_input.all_inner_texts() == [], "Phone number not enter correctly"
+        assert page.phone_input.all_inner_texts()[0] == '', "Phone number not entered correctly"
         page.phone_input.fill(User.phone)  # Should not allow to enter more than 10 digits
-        assert page.phone_input.all_inner_texts()[0] == "(123) 456-7890", "Phone number not enter correctly"
+        Helpers.wait_for_element_to_have_text(page.phone_input, "(928) 745-9832")
         page.next_button.click()
+
+        print("Verification for Address Page")
+        Helpers.verify_label(page.address_label, "Address")
+        Helpers.verify_textbox(page.location_input, None, self.alnum, "Enter a location")
+        Helpers.verify_label(page.find_address_link, "I can't find my address")
+        Helpers.verify_textbox(page.apt_unit_input, None, self.alnum)
+        Helpers.verify_label(page.apt_unit_label, "Apt/Unit #")
+        Helpers.verify_label(page.concent_message, page.concent)
+        Helpers.verify_label(page.hipaa_message, page.hippa)
+        page.location_input.fill(User.address)
+        page.select_city.click()
+        page.concent_checkbox.click()
+        page.hipaa_notice_checkbox.click()
+        page.next_button.click()
+
+        print("Verification for Height & Weight Page")
+        Helpers.verify_label(page.height_weight_label, "What is your height and weight?")
+        Helpers.verify_label(page.height_label, "Height")
+        page.height_dropdown.select_option("4'10\"")
+        Helpers.verify_label(page.weight_label, "Weight (lbs)")
+        Helpers.verify_textbox(page.weight_input)
+        page.weight_input.fill(self.alnum)     # Should not allow alphabetical chars
+        assert page.weight_input.all_inner_texts()[0] == '', "Weight not entered correctly"
+        page.weight_input.fill("1234")  # Should not allow to enter more than 3 digits
+        assert page.weight_input.input_value() == "123", "Weight not entered correctly"

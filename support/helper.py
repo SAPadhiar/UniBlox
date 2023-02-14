@@ -1,9 +1,10 @@
 """
 This module has functions to verify different form controls
 """
-import random, string
+import random
+import string
+import time
 from playwright.sync_api import Locator, expect
-
 from support.test_base import TestBase
 
 
@@ -65,7 +66,20 @@ class Helpers:
 
     @staticmethod
     def move_slider(locator:Locator):
+        """
+        Method to move the slider element
+        """
         locator.hover()
         TestBase.get_page().mouse.down()
         locator.hover()
         TestBase.get_page().mouse.up()
+
+    @staticmethod
+    def wait_for_element_to_have_text(element: Locator, expected_text: str, timeout_seconds: int = 15) -> None:
+        """
+        Waits till an element to have expected text
+        """
+        count = 1
+        while expected_text not in element.input_value() and count <= timeout_seconds:
+            time.sleep(1)
+            count += 1

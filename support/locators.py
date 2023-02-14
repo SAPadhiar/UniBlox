@@ -55,3 +55,22 @@ class Locators:
     # Phone number page locators
     phone_label = "//div[contains(text(),'Phone')]"
     phone_input = "input[name='answer']"
+
+    # Address page locators
+    address_label = "//div[contains(text(),'Address')]"
+    location_input = "input[placeholder='Enter a location']"
+    find_address_link = "//div[contains(text(),'find my address')]"
+    concent_message = "//label[1]//div[1]"
+    concent_checkbox = "input[name='isAuthReleaseAgree']"
+    hipaa_message = "//label[2]//div[1]"
+    hipaa_notice_checkbox = "input[name='isConsentBusiness']"
+    apt_unit_input = "#apt_unit"
+    apt_unit_label = "label[for='apt_unit']"
+    select_city = "(//div[@class='pac-item'])[1]"
+
+    # Height & Weight page locators
+    height_weight_label = "//div[contains(text(),'height and weight')]"
+    height_label = "//div[contains(text(),'Height')]"
+    weight_label = "//div[contains(text(),'Weight')]"
+    height_dropdown = "#height"
+    weight_input = "input[name='weight']"
