@@ -6,7 +6,7 @@ This repository is made with the purpose of testing insure.com website's functio
 
 **Note:** This repository was created in a constrained amount of time for informative purposes only; it does not cover all functional flows.
 
-**Test URL:** http://d3j8nuwp74eyml.cloudfront.net/5U5PU/S2xbn\
+**Test URL:** http://d3j8nuwp74eyml.cloudfront.net/5U5PU/S2xbn  
 **Test Framework:** Playwright + PyTest (Python)\
 **Test Coverage:** 20%\
 **Functional scenario:** Validates the given URL by verifying all the UI components present on the GUI
@@ -18,5 +18,6 @@ Playwright automatically downloads Firefox, WebKit, and Chromium browsers.
 
 ```
 $ pip install playwright
-$ python -m playwright install
+$ playwright install
+$ pip install -r requirements.txt
 ```

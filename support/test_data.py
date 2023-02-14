@@ -2,7 +2,7 @@
 A Base Class for Getting common Settings required throughout the Execution
 """
 
-class Website:
+class User:
     """
     BaseClass for getting Browser, Page, Configuration, TestData & Other Reusable Functions
     """
@@ -10,3 +10,5 @@ class Website:
     first_name = "Test"
     last_name = "Automation"
     email = "test.automation.user1234@gmail.com"
+    birth_date = "23-12-2020"
+    phone = 123456789012

@@ -1,7 +1,10 @@
 """
 This module has functions to verify different form controls
 """
+import random, string
 from playwright.sync_api import Locator, expect
+
+from support.test_base import TestBase
 
 
 class Helpers:
@@ -52,3 +55,17 @@ class Helpers:
             text = locator.input_value()
             assert input_value in text
             locator.fill("")
+
+    @staticmethod
+    def generate_random_alphanumeric(size: int):
+        """
+        Returns randomly generated alphanumeric string
+        """
+        return ''.join(random.choices(string.ascii_letters + string.digits, k=size))
+
+    @staticmethod
+    def move_slider(locator:Locator):
+        locator.hover()
+        TestBase.get_page().mouse.down()
+        locator.hover()
+        TestBase.get_page().mouse.up()
