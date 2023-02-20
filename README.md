@@ -30,7 +30,7 @@ $ pytest test_name.py
 
 For successfully running _test_functional.py_ , follow below steps after installing playwright & required modules:
 ```
-$ git clone https://github.com/SAPadhiar/UniBlox.git
-$ cd UniBlox
+$ git clone https://github.com/SAPadhiar/playwright_pytest.git
+$ cd playwright_pytest
 $ pytest -vs tests/test_functional.py
 ```
